@@ -1,33 +1,33 @@
-#!/usr/bin/env bash
+#!/bin/bash
 update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/wslview 1
 update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/wslview 1
 
-function interop_prefix {
-	if [ -f /etc/wsl.conf ]; then
-		tmp=$(awk -F '=' '/root/ {print $2}' /etc/wsl.conf)
-		if [ "$tmp" == "" ]; then
-			echo "/mnt/"
-		else
-			echo "$tmp"
-		fi
-	else
-		echo "/mnt/"
-	fi
+function interop_prefix() {
+  if [ -f /etc/wsl.conf ]; then
+    tmp=$(awk -F '=' '/root/ {print $2}' /etc/wsl.conf)
+    if [ "$tmp" == "" ]; then
+      echo "/mnt/"
+    else
+      echo "$tmp"
+    fi
+  else
+    echo "/mnt/"
+  fi
 }
 
-function winps_exec {
-PATH="$(interop_prefix)c/Windows/System32/WindowsPowerShell/v1.0/:$(interop_prefix)c/Windows/System32/:$PATH"
-chcp.com $("$(interop_prefix)"c/Windows/System32/reg.exe query "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage" /v OEMCP 2>&1 | sed -n 3p | sed -e 's|\r||g' | grep -o '[[:digit:]]*') >/dev/null
-"$(interop_prefix)"c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -Command "$@"
-chcp.com 65001 >/dev/null
-PATH=$(getconf PATH)
+function winps_exec() {
+  PATH="$(interop_prefix)c/Windows/System32/WindowsPowerShell/v1.0/:$(interop_prefix)c/Windows/System32/:$PATH"
+  chcp.com "$("$(interop_prefix)"c/Windows/System32/reg.exe query "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage" /v OEMCP 2>&1 | sed -n 3p | sed -e 's|\r||g' | grep -o '[[:digit:]]*')" > /dev/null
+  "$(interop_prefix)"c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -Command "$@"
+  chcp.com 65001 > /dev/null
+  PATH=$(getconf PATH)
 }
 
-function prsh_check {
-ppep="$(winps_exec Get-ExecutionPolicy 2>&1 | tail -n1 | sed 's/\r$//')"
-echo -e "Powershell Execution Policy: $ppep"
-if [[ "$ppep" = "Restricted" ]]; then
-	cat << EOF
+function prsh_check() {
+  ppep="$(winps_exec Get-ExecutionPolicy 2>&1 | tail -n1 | sed 's/\r$//')"
+  echo -e "Powershell Execution Policy: $ppep"
+  if [[ "$ppep" == "Restricted" ]]; then
+    cat << EOF
 ***************************************
                WARNING
 ***************************************
@@ -42,22 +42,20 @@ ministrator right:
 Due to the limitation, it is not possib
 le to invoke this command from WSL.
 EOF
-fi
+  fi
 
 }
 
-if [ -f /etc/fake-wsl-release ]
-then
-	cat << EOF
+if [ -f /etc/fake-wsl-release ]; then
+  cat << EOF
 ***************************************
                WARNING
 ***************************************
 You are using fake WSL Environment. Thi
 ngs will not work as intended.
 EOF
-elif [ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]
-then
-	cat << EOF
+elif [ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  cat << EOF
 ***************************************
                WARNING
 ***************************************
@@ -66,5 +64,5 @@ bility. Instalation will proceed, but w
 slu will not work as intended.
 EOF
 else
-   prsh_check
+  prsh_check
 fi

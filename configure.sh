@@ -17,63 +17,71 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function env_check {
-if [ -f /etc/fake-wsl-release ]
-then
+function env_check() {
+  if [ -f /etc/fake-wsl-release ]; then
     echo "[fake WSL Environment]"
-elif [ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]
-then
+  elif [ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
     echo "Your distro do not support WSL Interopability. Installation Aborted."
     exit 1
-fi
+  fi
 }
 
-function pkg_inst {
-distro="$(head -n1 /etc/os-release | sed -e 's/NAME=\"//g')"
-case $distro in
-  *Pengwin*)
-		sudo dpkg --force-depends --remove wslu
-		sudo apt install -y git gzip make
-		;;
-	*WLinux*|Ubuntu*|*Debian*|*Kali*)
-		sudo apt purge -y wslu
-		sudo apt install -y git bc gzip make imagemagick
-		;;
-	openSUSE*|SLES*)
-		sudo zypper -n rm wslu
-		sudo zypper -n install git bc gzip make imagemagick
-		;;
-	Alpine*)
-		sudo apk add git bc gzip make bash-completion imagemagick
-		;;
+function pkg_inst() {
+  distro="$(head -n1 /etc/os-release | sed -e 's/NAME=\"//g')"
+  case $distro in
+    *MinLinux*)
+      sudo dpkg --force-depends --remove wslu
+      sudo apt install -y git gzip make
+      ;;
+    *WLinux* | Ubuntu* | *Debian* | *Kali*)
+      sudo apt purge -y wslu
+      sudo apt install -y git bc gzip make imagemagick
+      ;;
+    openSUSE* | SLES*)
+      sudo zypper -n rm wslu
+      sudo zypper -n install git bc gzip make imagemagick
+      ;;
+    Alpine*)
+      sudo apk add git bc gzip make bash-completion imagemagick
+      ;;
     Arch*)
-		sudo pacman -Syyu git bc gzip make bash-completion imagemagick
-		;;
-    *Oracle*|Scientific*)
-		sudo yum install -y git bc gzip make bash-completion imagemagick
-		;;
+      sudo pacman -Syyu git bc gzip make bash-completion imagemagick
+      ;;
+    *Oracle* | Scientific*)
+      sudo yum install -y git bc gzip make bash-completion imagemagick
+      ;;
     *Fedora*)
-		sudo dnf install -y git bc gzip make bash-completion ImageMagick
-		;;
-	*Generic*) [ "fedora" == "$(grep -e "LIKE=" /etc/os-release | sed -e 's/ID_LIKE=//g')" ] && sudo dnf install -y git || exit 1;;
-    *) exit 1;;
-esac
+      sudo dnf install -y git bc gzip make bash-completion ImageMagick
+      ;;
+    *Generic*) [ "fedora" == "$(grep -e "LIKE=" /etc/os-release | sed -e 's/ID_LIKE=//g')" ] && sudo dnf install -y git || exit 1 ;;
+    *) exit 1 ;;
+  esac
 }
 
-function main_inst {
-env_check
-pkg_inst
-make
-sudo make DESTDIR=/usr install
+function main_inst() {
+  env_check
+  pkg_inst
+  make
+  sudo make DESTDIR=/usr install
 }
 
 for args; do
-	case $args in
-		-e|--env) env_check; exit;;
-		-P|--pkg) pkg_inst; exit;;
-		-i|--install) main_inst; exit;;
-		*) exit 1;;
-	esac
+  case $args in
+    -e | --env)
+      env_check
+      exit
+      ;;
+    -P | --pkg)
+      pkg_inst
+      exit
+      ;;
+    -i | --install)
+      main_inst
+      exit
+      ;;
+    *) exit 1 ;;
+  esac
 done
 
-env_check; pkg_inst
+env_check
+pkg_inst

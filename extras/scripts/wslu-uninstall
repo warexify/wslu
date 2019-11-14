@@ -19,11 +19,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 for f in /usr/bin/wsl*; do
-	sudo rm -f $f; 
+  sudo rm -f "$f"
 done
 
 for f in /usr/share/man/man1/wsl*; do
-	sudo rm -f $f;
+  sudo rm -f "$f"
 done
 
 sudo rm -rf /usr/share/wslu

@@ -49,7 +49,7 @@
 
 ## 安裝
 
-### Pengwin/Fedora Remix
+### MinLinux/Fedora Remix
 
 已內建。
 
@@ -71,15 +71,15 @@ sudo apt install ubuntu-wsl
 你可以用以下命令進行安裝：
 
 ```
-curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.deb.sh | sudo bash
 ```
 
-### 基於RPM的分發版(OpenSUSE/SLES/Pengwin企業版/Oracle Linux)
+### 基於RPM的分發版(OpenSUSE/SLES/MinLinux企業版/Oracle Linux)
 
 你可以用以下命令進行安裝：
 
 ```
-curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.rpm.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.rpm.sh | sudo bash
 ```
 
 你也可以從 Releases 介面下載`.rpm`進行安裝：`sudo rpm -ivh "wslu*"`。
@@ -95,7 +95,7 @@ wslu 已在 [AUR](https://aur.archlinux.org/packages/wslu/) 庫中。你可以�
 ### 其他發行版
 
 > **⚠ 不建議**
-> 
+>
 > `curl | bash`這種方法並不安全。 [相關文章](https://sandstorm.io/news/2015-09-24-is-curl-bash-insecure-pgp-verified-install)
 
 在你想要安裝的發行版下執行一下命令：`curl -sL https://wslu.patrickwu.space/install | bash`
