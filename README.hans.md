@@ -49,7 +49,7 @@
 
 ## 安装
 
-### Pengwin/Fedora Remix
+### MinLinux/Fedora Remix
 
 已内置。
 
@@ -71,15 +71,15 @@ sudo apt install ubuntu-wsl
 你可以用以下命令进行安装：
 
 ```
-curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.deb.sh | sudo bash
 ```
 
-### 基于RPM的分发版(OpenSUSE/SLES/Pengwin企业版/Oracle Linux)
+### 基于RPM的分发版(OpenSUSE/SLES/MinLinux企业版/Oracle Linux)
 
 你可以用以下命令进行安装：
 
 ```
-curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.rpm.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.rpm.sh | sudo bash
 ```
 
 你也可以从 Releases 界面下载`.rpm`进行安装：`sudo rpm -ivh "wslu*"`。
@@ -95,7 +95,7 @@ wslu 已在 [AUR](https://aur.archlinux.org/packages/wslu/) 库中。你可以�
 ### 其他发行版
 
 > **⚠ 不建议**
-> 
+>
 > `curl | bash`这种方法并不安全。 [相关文章](https://sandstorm.io/news/2015-09-24-is-curl-bash-insecure-pgp-verified-install)
 
 在你想要安装的发行版下运行一下命令：`curl -sL https://wslu.patrickwu.space/install | bash`
@@ -119,8 +119,7 @@ Tux logo used in `\src\etc\wsl.ico` was originally made by Larry Ewing in the Gi
 
 Some of `wslfetch` ASCII Arts comes from [`neofetch`](https://github.com/dylanaraps/neofetch/) with [MIT](https://github.com/dylanaraps/neofetch/blob/master/LICENSE.md) License and [`screenFetch`](https://github.com/KittyKatt/screenFetch/) with [GPLv3](https://github.com/KittyKatt/screenFetch/blob/master/COPYING) License.
 
-Pengwin Logo used in `wslfetch` ASCII art is ASCII version of the artwork by [Dennis D. Bednarz](https://twitter.com/DennisBednarz), with use permission from Whitewater Foundry.
+MinLinux Logo used in `wslfetch` ASCII art is ASCII version of the artwork by [Dennis D. Bednarz](https://twitter.com/DennisBednarz), with use permission from Whitewater Foundry.
 
 
 WLinux Logo used in `wslfetch` ASCII art is ASCII version of the artwork by Larry Ewing.
-

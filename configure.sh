@@ -74,7 +74,7 @@ PATH=$(getconf PATH)
 function pkg_inst {
 distro="$(head -n1 /etc/os-release | sed -e 's/NAME=\"//g')"
 case $distro in
-  *Pengwin*)
+  *MinLinux*)
 		sudo dpkg --force-depends --remove wslu
 		sudo apt install -y git gzip make
 		;;

@@ -49,7 +49,7 @@ A WSL tool to convert path styles.
 
 ## Installation
 
-### Pengwin/Fedora Remix
+### MinLinux/Fedora Remix
 
 Preinstalled in WLinux and Fedora Remix for WSL.
 
@@ -71,15 +71,15 @@ You can download the `.deb` package from release and install it using `sudo dpkg
 You can use the following command for easy installation:
 
 ```
-$ curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo bash
+$ curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.deb.sh | sudo bash
 ```
 
-### For RPM-based systems(OpenSUSE/SLES/Pengwin Enterprise/Oracle Linux)
+### For RPM-based systems(OpenSUSE/SLES/MinLinux Enterprise/Oracle Linux)
 
 You can use the following command for easy installation:
 
 ```
-$ curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.rpm.sh | sudo bash
+$ curl -s https://packagecloud.io/install/repositories/warexify/wslu/script.rpm.sh | sudo bash
 ```
 
 You can download the `.rpm` package from release and install it using `sudo rpm -ivh "wslu*"`.
@@ -103,7 +103,7 @@ You can also download the `.apk` package from release and install it using `sudo
 ### Other distributions
 
 > **⚠ Not Recommend**
-> 
+>
 > `curl | bash` method is not secure. [Related article](https://sandstorm.io/news/2015-09-24-is-curl-bash-insecure-pgp-verified-install)
 
 Run the following command in your preferred distro: `curl -sL https://wslu.patrickwu.space/install | bash`
@@ -127,6 +127,6 @@ Tux logo used in `\src\etc\wsl.ico` was originally made by Larry Ewing in the Gi
 
 Some of `wslfetch` ASCII Arts comes from [`neofetch`](https://github.com/dylanaraps/neofetch/) with [MIT](https://github.com/dylanaraps/neofetch/blob/master/LICENSE.md) License and [`screenFetch`](https://github.com/KittyKatt/screenFetch/) with [GPLv3](https://github.com/KittyKatt/screenFetch/blob/master/COPYING) License.
 
-Pengwin Logo used in `wslfetch` ASCII art is ASCII version of the artwork by [Dennis D. Bednarz](https://twitter.com/DennisBednarz), with use permission from Whitewater Foundry.
+MinLinux Logo used in `wslfetch` ASCII art is ASCII version of the artwork by [Dennis D. Bednarz](https://twitter.com/DennisBednarz), with use permission from Whitewater Foundry.
 
 WLinux Logo used in `wslfetch` ASCII art is ASCII version of the artwork by Larry Ewing.
